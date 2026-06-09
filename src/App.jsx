@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './App.css';
 
-L.Marker.prototype.options.icon = L.icon({
+const crisisIcon = new L.Icon({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
@@ -99,7 +99,7 @@ function App() {
             <MapClickHandler />
         
             {incidents.map((incident) => (
-              <Marker key={incident.id} position={incident.position}>
+              <Marker key={incident.id} position={incident.position} icon={crisisIcon}>
                 <Popup>
                   <strong>[{incident.type}]</strong>
                   <br />
