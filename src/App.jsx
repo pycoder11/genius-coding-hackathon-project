@@ -76,7 +76,7 @@ function App() {
               onChange={(e) => setSelectedType(e.target.value)}
               className="type-select"
             >
-              <option value="Flood">🔴 Flood / Hazard</option>
+              <option value="Flood">🔴 Flood/Hazard</option>
               <option value="Shelter">🟢 Safe Shelter</option>
               <option value="Blocked Road">🟠 Blocked Road</option>
               <option value="Medical">🔵 Medical Aid</option>
