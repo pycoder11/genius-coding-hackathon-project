@@ -14,3 +14,34 @@ L.Icon.Default.mergeOptions({
   iconRetinaUrl: markerIcon2x,
   shadowUrl: markerShadow,
 });
+
+function App() {
+  const defaultPosition = [35.7915, -78.7812];
+  const [incidents, setIncidents] = useState([
+    { id: 1, position: [35.7940, -78.7820], type: 'Flood', notes: 'Main St. flooded under the bridge.' },
+    { id: 2, position: [35.7900, -78.7750], type: 'Shelter', notes: 'Community Center open. High capacity.' }
+  ]);
+
+  const [selectedType, setSelectedType] = useState('Flood');
+  const [notes, setNotes] = useState('');
+
+  function MapClickHandler() {
+    useMapEvents({
+      click(e) {
+        const { lat, lng } = e.latlng;
+        const userNotes = prompt("Enter details for this incident (e.g., 'Downed power line'):");
+        
+        if (userNotes) {
+          const newIncident = {
+            id: Date.now(),
+            position: [lat, lng],
+            type: selectedType,
+            notes: userNotes
+          };
+          
+          setIncidents([...incidents, newIncident]);
+        }
+      },
+    });
+    return null;
+  }
