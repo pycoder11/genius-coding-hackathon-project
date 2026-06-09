@@ -45,3 +45,74 @@ function App() {
     });
     return null;
   }
+
+  return (
+    <div className="app-container">
+      <header className="app-header">
+        <h1>CrisisMap: Community Disaster Response</h1>
+        <p>Live crowdsourced hazard and resource tracking</p>
+      </header>
+      
+      <main className="app-content">
+        {/* Left Control Sidebar */}
+        <div className="sidebar">
+          <h3>Report an Incident</h3>
+          <p className="instruction-text">
+            1. Select the marker type below.<br />
+            2. <strong>Click anywhere on the map</strong> to place it!
+          </p>
+
+          <div className="form-group">
+            <label>Marker Type:</label>
+            <select 
+              value={selectedType} 
+              onChange={(e) => setSelectedType(e.target.value)}
+              className="type-select"
+            >
+              <option value="Flood"> Flood / Hazard</option>
+              <option value="Shelter"> Safe Shelter</option>
+              <option value="Blocked Road"> Blocked Road</option>
+              <option value="Medical"> Medical Aid</option>
+            </select>
+          </div>
+
+          <div className="legend">
+            <h4>Map Tracking Legend</h4>
+            <p> Active Hazard Reports</p>
+            <p> Available Safe Shelters</p>
+            <p> Structural/Road Blocks</p>
+            <p> Medical Stations</p>
+          </div>
+        </div>
+
+        <div className="map-wrapper">
+          <MapContainer 
+            center={defaultPosition} 
+            zoom={14} 
+            scrollWheelZoom={true}
+            className="leaflet-container"
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            
+            <MapClickHandler />
+        
+            {incidents.map((incident) => (
+              <Marker key={incident.id} position={incident.position}>
+                <Popup>
+                  <strong>[{incident.type}]</strong>
+                  <br />
+                  {incident.notes}
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default App;
