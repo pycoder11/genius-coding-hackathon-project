@@ -78,7 +78,7 @@ function App() {
             >
               <option value="Flood">🔴 Flood / Hazard</option>
               <option value="Shelter">🟢 Safe Shelter</option>
-              <option value="Blocked Road">🚧 Blocked Road</option>
+              <option value="Blocked Road">🟠 Blocked Road</option>
               <option value="Medical">🔵 Medical Aid</option>
             </select>
           </div>
@@ -87,7 +87,7 @@ function App() {
             <h4>Map Tracking Legend</h4>
             <p>🔴 Active Hazard Reports</p>
             <p>🟢 Available Safe Shelters</p>
-            <p>🚧 Structural/Road Blocks</p>
+            <p>🟠 Structural/Road Blocks</p>
             <p>🔵 Medical Stations</p>
           </div>
         </div>
