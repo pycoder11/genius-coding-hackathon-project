@@ -4,15 +4,23 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './App.css';
 
-const crisisIcon = new L.Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
+const getMarkerIcon = (type) => {
+  let color = 'blue'; // Default color
+  
+  if (type === 'Flood') color = 'red';
+  if (type === 'Shelter') color = 'green';
+  if (type === 'Blocked Road') color = 'orange';
+  if (type === 'Medical') color = 'violet';
+
+  return new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+};
 
 function App() {
   const defaultPosition = [35.7915, -78.7812];
@@ -99,7 +107,7 @@ function App() {
             <MapClickHandler />
         
             {incidents.map((incident) => (
-              <Marker key={incident.id} position={incident.position} icon={crisisIcon}>
+              <Marker key={incident.id} position={incident.position} icon={getMarkerIcon(incident.type)}>
                 <Popup>
                   <strong>[{incident.type}]</strong>
                   <br />
