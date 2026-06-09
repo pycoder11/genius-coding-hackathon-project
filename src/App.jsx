@@ -10,7 +10,7 @@ const getMarkerIcon = (type) => {
   if (type === 'Flood') color = 'red';
   if (type === 'Shelter') color = 'green';
   if (type === 'Blocked Road') color = 'orange';
-  if (type === 'Medical') color = 'violet';
+  if (type === 'Medical') color = 'blue';
 
   return new L.Icon({
     iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
